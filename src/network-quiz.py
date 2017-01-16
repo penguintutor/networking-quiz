@@ -51,6 +51,6 @@ while 1:
         for i in range (0,6):
                 input = ser.read()
                 input_number = ord(input)
-                print ("Question " + str(i) + " answer: " + str(input_number))
+                print ("Question " + str(i+1) + " answer: " + str(input_number))
 
         time.sleep(5)

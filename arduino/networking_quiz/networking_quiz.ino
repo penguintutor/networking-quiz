@@ -15,10 +15,10 @@ Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ80
 int delayval = 50; // delay for half a second
 
 // 2D array. Each row is a question, 0 = Q pin, 1-4 = answer pins
-int quiz_pins[6][5] = {{47,41,40,39,38},{46,39,38,37,36},{45,35,34,33,32},{44,31,30,29,28},{43,27,26,25,24},{42,23,22,21,20}};
+int quiz_pins[6][5] = {{47,41,40,39,38},{46,37,36,35,34},{45,33,32,31,30},{44,29,28,27,26},{43,25,24,23,22},{42,21,20,19,18}};
 
-// Serial communications setup
-int answerStatus[6] = {0,0,0,0,0,0};    // which value sent
+// Serial communications setupint 
+answerStatus[6] = {0,0,0,0,0,0};    // which value sent
 int inByte = 0;         // incoming serial byte
 int ledStatus[6] = {0,0,0,0,0,0};
 int commStatus = 0;    // used for debug
