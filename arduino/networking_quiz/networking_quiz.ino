@@ -14,9 +14,11 @@
 Adafruit_NeoPixel pixels = Adafruit_NeoPixel(NUMPIXELS, PIN, NEO_GRB + NEO_KHZ800);
 int delayval = 50; // delay for half a second
 
+// 2D array. Each row is a question, 0 = Q pin, 1-4 = answer pins
+int quiz_pins[6][5] = {{47,41,40,39,38},{46,39,38,37,36},{45,35,34,33,32},{44,31,30,29,28},{43,27,26,25,24},{42,23,22,21,20}};
 
 // Serial communications setup
-int portStatus[6] = {0,0,0,0,0,0};    // which value sent
+int answerStatus[6] = {0,0,0,0,0,0};    // which value sent
 int inByte = 0;         // incoming serial byte
 int ledStatus[6] = {0,0,0,0,0,0};
 int commStatus = 0;    // used for debug
@@ -26,6 +28,20 @@ void setup() {
   pixels.begin(); // This initializes the NeoPixel library.
   
   setStatus (11,1);
+  
+  
+  // Setup pins
+  // first are set to output with high (use low for enable to check against pull-up)
+  // next 4 entries are inputs with pullup
+  for (int qnum=0; qnum<6; qnum++) {
+        // set 
+        pinMode (quiz_pins[qnum][0], OUTPUT);
+        digitalWrite(quiz_pins[qnum][0], HIGH);
+        for (int anum=1; anum <5; anum++) {
+          pinMode(quiz_pins[qnum][anum], INPUT_PULLUP);
+        }
+      }
+  
   
     // start serial port at 9600 bps and wait for port to open:
   Serial.begin(9600);
@@ -38,20 +54,6 @@ void setup() {
 }
 
 void loop() {
-
-  /* // For a set of NeoPixels the first NeoPixel is 0, second is 1, all the way up to the count of pixels minus one.
-
-  for(int i=0;i<NUMPIXELS;i++){
-
-    // pixels.Color takes RGB values, from 0,0,0 up to 255,255,255
-    pixels.setPixelColor(i, pixels.Color(150,0,0)); // Moderately bright green color.
-
-    pixels.show(); // This sends the updated pixel color to the hardware.
-
-    delay(delayval); // Delay for a period of time (in milliseconds).
-
-  }*/
-  
   communicate();
   
   setStatus (11,3);
@@ -61,7 +63,6 @@ void loop() {
   }
   
   delay(delayval);
-  
   
 }
 
@@ -81,17 +82,36 @@ void communicate () {
       if (inByte != 254) continue;
       
       // Must have received 254 - so read next 6 values
+      // wait until 6 received
+      while (Serial.available() < 6) delay (50);
       for (int i=0; i<6; i++) {
           ledStatus[i] = Serial.read();
       }
-    
+      
       Serial.write(254);
+      // Get status of each question and write it back
+      for (int qnum=0; qnum<6; qnum++) {
+        // set to low - so can read inputs
+        digitalWrite(quiz_pins[qnum][0], LOW);
+        answerStatus[qnum] = 0;
+        for (int anum=1; anum <5; anum++) {
+           if (digitalRead(quiz_pins[qnum][anum]) == LOW) {
+             answerStatus[qnum] = anum;
+             break;
+           }
+        }
+        digitalWrite(quiz_pins[qnum][0], HIGH);
+        // Write this back to the host computer
+        Serial.write(answerStatus[qnum]);
+      }
+    
+ /*     Serial.write(254);
       Serial.write(0);  
       Serial.write(0);
       Serial.write(34);
       Serial.write(35);
       Serial.write(36);
-      Serial.write(37);
+      Serial.write(37);*/
       
       break;
     }  

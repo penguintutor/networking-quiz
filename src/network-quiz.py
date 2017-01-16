@@ -4,7 +4,7 @@ import serial
 import time
 import struct
 
-ser = serial.Serial('/dev/ttyACM0', 9600, timeout=5)
+ser = serial.Serial('/dev/ttyACM1', 9600, timeout=5)
 
 # read from Arduino
 input = ser.read()
@@ -30,8 +30,9 @@ while 1:
         while 1:
                 if (ser.inWaiting() == 0) :
                         timer +=1
-                        if (timer == 20) :
+                        if (timer == 10) :
                                 ser.write(struct.pack('B',255))
+                                timer = 0
                                 break
                         print (".", end="")
                         time.sleep (1)
@@ -50,6 +51,6 @@ while 1:
         for i in range (0,6):
                 input = ser.read()
                 input_number = ord(input)
-                print ("Read input back: " + str(input_number))
+                print ("Question " + str(i) + " answer: " + str(input_number))
 
         time.sleep(5)
