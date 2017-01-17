@@ -17,7 +17,9 @@ mv Adafruit_NeoPixel-master Adafruit_NeoPixel
 Restart the Arduino IDE
 
 
+## Python modules
 
+ 
 
 
 More details to follow in future.

@@ -17,8 +17,8 @@ int delayval = 50; // delay for half a second
 // 2D array. Each row is a question, 0 = Q pin, 1-4 = answer pins
 int quiz_pins[6][5] = {{47,41,40,39,38},{46,37,36,35,34},{45,33,32,31,30},{44,29,28,27,26},{43,25,24,23,22},{42,21,20,19,18}};
 
-// Serial communications setupint 
-answerStatus[6] = {0,0,0,0,0,0};    // which value sent
+// Serial communications setup
+int answerStatus[6] = {0,0,0,0,0,0};    // which value sent
 int inByte = 0;         // incoming serial byte
 int ledStatus[6] = {0,0,0,0,0,0};
 int commStatus = 0;    // used for debug
@@ -42,27 +42,29 @@ void setup() {
         }
       }
   
+  readyStatus(0);
   
     // start serial port at 9600 bps and wait for port to open:
   Serial.begin(9600);
   while (!Serial) {
     ; // wait for serial port to connect. Needed for Leonardo only
   }
+  readyStatus(1);
   establishContact();  // send a byte to establish contact until receiver responds 
-    
-  setStatus (11, 2);
+  readyStatus(2);  
+  readyStatus(3);
 }
 
 void loop() {
   communicate();
   
-  setStatus (11,3);
+  //setStatus (11,3);
   
   for (int i=0; i<6; i++) {
-    setStatus (i, ledStatus[i]+1);
+    setStatus (i, ledStatus[i]);
   }
   
-  delay(delayval);
+  //delay(delayval);
   
 }
 
@@ -75,7 +77,7 @@ void communicate () {
       
       // If we get a 255 - then reset
       if (inByte == 255) {
-        setStatus (11, 2);
+        //setStatus (11, 2);
         return;
       }
       
@@ -104,14 +106,6 @@ void communicate () {
         // Write this back to the host computer
         Serial.write(answerStatus[qnum]);
       }
-    
- /*     Serial.write(254);
-      Serial.write(0);  
-      Serial.write(0);
-      Serial.write(34);
-      Serial.write(35);
-      Serial.write(36);
-      Serial.write(37);*/
       
       break;
     }  
@@ -139,6 +133,51 @@ void setStatus (int lednum, int status) {
 }
 
 
+void readyStatus(int state) {
+
+  if (state == 0) {
+    for (int pos = 0; pos < 12; pos ++) {
+        for (int i=0; i<12;  i++) {
+          if (pos == i) pixels.setPixelColor(i, pixels.Color(150,0,0));
+          else pixels.setPixelColor(i, pixels.Color(0,0,0));
+        pixels.show();
+        delay (10);
+      }
+    }
+  return;
+  }
+  if (state == 1) {
+    for (int pos = 11; pos >= 0; pos --) {
+        for (int i=0; i<12;  i++) {
+          if (pos == i) pixels.setPixelColor(i, pixels.Color(0,150,0));
+          else pixels.setPixelColor(i, pixels.Color(0,0,0));
+        pixels.show();
+        delay (10);
+      }
+    }
+  return;
+  }
+  if (state == 2) {
+    for (int pos = 0; pos < 12; pos ++) {
+        for (int i=0; i<12;  i++) {
+          if (pos == i) pixels.setPixelColor(i, pixels.Color(0,0,150));
+          else pixels.setPixelColor(i, pixels.Color(0,0,0));
+        pixels.show();
+        delay (10);
+      }
+    }
+  return;
+  }
+  else {
+    for (int i=0; i<12;  i++) {
+          pixels.setPixelColor(i, pixels.Color(0,0,0));
+        pixels.show();
+    }
+  }
+
+}
+
+
 void establishContact() {
   setStatus (0, 0);
   while (1) {
@@ -152,7 +191,6 @@ void establishContact() {
       if (inByte == 255) { 
         return;
       }
-      //Serial.write(inByte);
     }
   }
 }
