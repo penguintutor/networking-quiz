@@ -4,6 +4,8 @@ import sys
 import serial
 import time
 import struct
+# readchar is required for the command line version
+# install through pip3 
 import readchar
 
 ser = serial.Serial('/dev/ttyACM1', 9600, timeout=5)
