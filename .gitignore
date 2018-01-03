@@ -91,3 +91,6 @@ ENV/
 
 # Rope project settings
 .ropeproject
+
+# Temp guizero using dev branch soft linked to src directory
+src/guizero
