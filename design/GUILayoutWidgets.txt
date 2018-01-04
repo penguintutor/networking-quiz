@@ -1,0 +1,21 @@
+Widgets related to example question
+
+
+text_question_title "Question 1"
+
+text_question_details_1 "This is the text description for question 1"
+text_question_details_2 "This is the second line of text description for question 1"
+text_question_details_3 "This is a third line of text"
+text_question_details_4 "There is one more line after this"
+text_question_details_5 "The 5th and last line of text"
+
+text_question_option_1 "A. Answer 1"
+text_question_option_2 "B. Answer 2"
+text_question_option_3 "C. Answer 3"
+text_question_option_4 "D. Answer 4"
+
+image_question "images/network1.gif"
+
+
+Widgets related to choose quiz screen
+
