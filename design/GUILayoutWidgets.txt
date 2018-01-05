@@ -1,4 +1,4 @@
-Widgets related to example question
+** Widgets related to example question
 
 
 text_question_title "Question 1"
@@ -16,6 +16,27 @@ text_question_option_4 "D. Answer 4"
 
 image_question "images/network1.gif"
 
+left_button = "<< Previous", prev_question
+right_button = "Next >>", next_question
 
-Widgets related to choose quiz screen
 
+
+** Widgets related to choose quiz screen
+
+text_question_title "Start Quiz"
+
+text_question_details1 "Enter the quiz by cabling up the patch-panel"
+text_question_details2 "the question number is shown at the top"
+text_question_details3 "the answer corresponds to a port on the"
+text_question_details4 "second row"
+text_question_details5 ""
+
+text_question_option_1 "Press start when ready"
+text_question_option_2 ""
+text_question_option_3 ""
+text_question_option_4 ""
+
+image_question "Company Logo or Quiz image"
+
+left_button = <hide>
+right_button = "Start Quiz", start_quiz

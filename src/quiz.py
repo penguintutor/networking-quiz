@@ -6,6 +6,25 @@
 # directory - in future this will use the normal production version of guizero 
 
 from guizero.build.lib.guizero import App, Text, PushButton, info, MenuBar, Picture
+import quizdetails
+
+
+quiz = quizdetails.QuizDetails() 
+
+
+
+
+
+# Load quiz from disk
+def load_quiz():
+    quiz.load("quiz1.json")
+    pass
+
+
+# Start the quiz
+def start_quiz():
+    load_quiz()
+    print ("Title "+quiz.getTitle())
 
 
 # Move to prev question
@@ -53,24 +72,25 @@ def main():
     text_title = Text(app, text="Networking Quiz", size=30, grid=[2,1,2,1])
     image_logo = Picture(app, image="images/logo.gif", grid=[4,1,2,1])
     
-    text_question_title = Text(app, text="Question 1", align="left", size=25, grid=[1,2,2,1])
+    text_question_title = Text(app, text="Start Quiz", align="left", size=25, grid=[1,2,2,1])
     
-    text_question_details_1 = Text(app, text="This is the text description for question 1", align="left", size=18, grid=[1,3,3,1])
-    text_question_details_2 = Text(app, text="This is the second line of text description for question 1", align="left", size=18, grid=[1,4,2,1])
-    text_question_details_3 = Text(app, text="This is a third line of text", align="left", size=18, grid=[1,5,2,1])
-    text_question_details_4 = Text(app, text="There is one more line after this", align="left", size=18, grid=[1,6,2,1])
-    text_question_details_5 = Text(app, text="The 5th and last line of text", align="left", size=18, grid=[1,7,2,1])
+    text_question_details_1 = Text(app, text="Enter the quiz by cabling up the patch-panel", align="left", size=18, grid=[1,3,3,1])
+    text_question_details_2 = Text(app, text="the question number is shown at the top", align="left", size=18, grid=[1,4,2,1])
+    text_question_details_3 = Text(app, text="the answer corresponds to a port on the", align="left", size=18, grid=[1,5,2,1])
+    text_question_details_4 = Text(app, text="second row", align="left", size=18, grid=[1,6,2,1])
+    text_question_details_5 = Text(app, text="", align="left", size=18, grid=[1,7,2,1])
     
-    text_question_option_1 = Text(app, text="A. Answer 1", align="left", size=18, grid=[1,8,2,1])
-    text_question_option_2 = Text(app, text="B. Answer 2", align="left", size=18, grid=[1,9,2,1])
-    text_question_option_3 = Text(app, text="C. Answer 3", align="left", size=18, grid=[1,10,2,1])
-    text_question_option_4 = Text(app, text="D. Answer 4", align="left", size=18, grid=[1,11,2,1])
+    text_question_option_1 = Text(app, text="Press start when ready", align="left", size=18, grid=[1,8,2,1])
+    text_question_option_2 = Text(app, text="", align="left", size=18, grid=[1,9,2,1])
+    text_question_option_3 = Text(app, text="", align="left", size=18, grid=[1,10,2,1])
+    text_question_option_4 = Text(app, text="", align="left", size=18, grid=[1,11,2,1])
     
     image_question = Picture(app, image="images/network1.gif", grid=[3,3,3,9])
     
     
-    button = PushButton(app, text="<< Previous", command=prev_question, grid=[1,13])
-    button = PushButton(app, text="Next >>", command=next_question, grid=[5,13])
+    left_button = PushButton(app, text="<< Previous", command=prev_question, grid=[1,13])
+    left_button.hide()
+    right_button = PushButton(app, text="Start quiz", command=start_quiz, grid=[5,13])
     app.display()
 
 

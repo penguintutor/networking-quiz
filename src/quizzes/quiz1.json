@@ -1,0 +1,28 @@
+{"Networking Quiz" : [ 
+        {"question 1" : {
+            "details1" : "What is the name of the networking protocol",
+            "details2" : "used for Wireless connections to a network,",
+            "details3" : "often used in homes and offices?",
+            "details4" : "",
+            "details5" : "",
+            "option1" : "a. CAT-5",
+            "option2" : "b. CAT-6",
+            "option3" : "c. Wi-Fi",
+            "option4" : "d. SMTP",
+            "image" : "network1.gif"
+            }
+        },
+        {"question 2" : {
+            "details1" : "What service is used for providing a dynamic IP",
+            "details2" : "address to a computer?",
+            "details3" : "",
+            "details4" : "",
+            "details5" : "",
+            "option1" : "a. DNS",
+            "option2" : "b. DHCP",
+            "option3" : "c. CAT-6",
+            "option4" : "d. HDMI",
+            "image" : "network1.gif"
+            }
+        }
+]}
