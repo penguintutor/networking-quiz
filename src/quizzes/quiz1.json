@@ -9,7 +9,8 @@
             "option2" : "b. CAT-6",
             "option3" : "c. Wi-Fi",
             "option4" : "d. SMTP",
-            "image" : "network1.gif"
+            "image" : "network1.gif",
+            "answer" : 2
             }
         },
         {"question 2" : {
@@ -22,7 +23,8 @@
             "option2" : "b. DHCP",
             "option3" : "c. CAT-6",
             "option4" : "d. HDMI",
-            "image" : "network1.gif"
+            "image" : "network1.gif",
+            "answer" : 1
             }
         }
 ]}
