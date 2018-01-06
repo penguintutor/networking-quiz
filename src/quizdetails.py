@@ -8,12 +8,12 @@ class QuizDetails():
     current_question = 0
     
     
-    def next_question(self):
+    def nextQuestion(self):
         self.current_question += 1
         if (self.current_question > len(self.questions) -1):
             self.current_question = self.questions -1
     
-    def prev_question(self):
+    def prevQuestion(self):
         self.current_question -= 1
         if (self.current_question < 0):
             self.current_question = 0
@@ -23,7 +23,7 @@ class QuizDetails():
             self.current_question = question_num
     
     def getQuestion(self):
-        return self.questions[current_question]
+        return self.questions[self.current_question]
     
     def getTitle(self):
         return self.title

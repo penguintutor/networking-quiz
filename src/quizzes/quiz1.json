@@ -1,5 +1,5 @@
 {"Networking Quiz" : [ 
-        {"question 1" : {
+        {"Question 1" : {
             "details1" : "What is the name of the networking protocol",
             "details2" : "used for Wireless connections to a network,",
             "details3" : "often used in homes and offices?",
@@ -13,7 +13,7 @@
             "answer" : 2
             }
         },
-        {"question 2" : {
+        {"Question 2" : {
             "details1" : "What service is used for providing a dynamic IP",
             "details2" : "address to a computer?",
             "details3" : "",
