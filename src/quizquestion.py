@@ -1,11 +1,12 @@
 
 
 class QuizQuestion():
-    title = ""
-    details = []
-    options = []
-    image = ""
-    answer = ""
+    # These are all required by constructor so do not require default values
+    #title = ""
+    #details = []
+    #options = []
+    #image = ""
+    #answer = 
     
     def __init__(self, title, details, options, image, answer):
         self.title = title
@@ -28,5 +29,9 @@ class QuizQuestion():
         
     def getAnswer(self):
         return self.answer
+        
+    # returns as ascii char 0  = a, 1 = b etc.
+    def getAnswerLetter(self):
+        return chr(96 + self.answer)
         
         

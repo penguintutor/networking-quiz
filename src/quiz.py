@@ -5,11 +5,12 @@
 # This uses the dev branch of guizero which needs to be linked to the appropriate
 # directory - in future this will use the normal production version of guizero 
 from guizero.build.lib.guizero import App
-
-
 import quizapp
 
-
+# WARNING - in this version some of the configuration details are hardcoded
+# including the name of the quiz file and the serial address for the 
+# arduino.
+# If these need to be changed then they are in quizapp.py
 
 
 def main():

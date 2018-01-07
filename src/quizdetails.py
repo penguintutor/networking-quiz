@@ -35,14 +35,25 @@ class QuizDetails():
     def getQuestionNum(self):
         return self.current_question
     
-    def getQuestion(self):
-        return self.questions[self.current_question]
+    # if question_num not provided (or -1) then returns current question
+    # otherwise returns the requested question
+    def getQuestion(self, question_num = -1):
+        if question_num == -1:
+            question_num = self.current_question
+        return self.questions[question_num]
     
     def getTitle(self):
         return self.title
         
     def numQuestions(self):
         return len(self.questions)
+        
+    # Iterate through all questions, return answers as a list
+    def getAnswers(self):
+        answers = []
+        for question in self.questions:
+            answers.append(question.getAnswer())
+        return answers
     
     def load(self, filename):
         ##todo - if existing quiz replace
@@ -60,7 +71,8 @@ class QuizDetails():
                 question_details = [
                     this_question[question_title]["details1"], this_question[question_title]["details2"], this_question[question_title]["details3"],
                     this_question[question_title]["details4"],
-                    this_question[question_title]["details5"]
+                    this_question[question_title]["details5"],
+                    this_question[question_title]["details6"]
                 ]
                 question_options = [
                     this_question[question_title]["option1"],

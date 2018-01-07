@@ -30,6 +30,7 @@ text_question_details2 "the question number is shown at the top"
 text_question_details3 "the answer corresponds to a port on the"
 text_question_details4 "second row"
 text_question_details5 ""
+text_question_details6 ""
 
 text_question_option_1 "Press start when ready"
 text_question_option_2 ""
@@ -40,3 +41,23 @@ image_question "Company Logo or Quiz image"
 
 left_button = <hide>
 right_button = "Start Quiz", start_quiz
+
+
+** Widgets related to end quiz screen
+
+text_question_title "Results"
+
+text_question_details1 "Question 1 is correct, Answer = c"
+text_question_details2 "Question 2 is incorrect, Correct answer a"
+text_question_details3 "Question 3 is correct, Answer = c"
+text_question_details4 "Question 4 is incorrect, Correct answer a"
+text_question_details5 "Question 5 is correct, Answer = c"
+text_question_details6 "Question 6 is incorrect, Correct answer a"
+
+text_question_option_1 ""
+text_question_option_2 "Score = 3 out of 6"
+text_question_option_3 ""
+text_question_option_4 "[0,1]Your network is NOT working, [2 - 4]Network performance acceptable, [5,6]High speed network"
+
+                                 
+image_question "[0,1]Sad face, [2 - 4]Straight face, [5,6]Smiley face"
