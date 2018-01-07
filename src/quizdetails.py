@@ -8,6 +8,16 @@ class QuizDetails():
     current_question = 0
     
     
+    def isFirst(self):
+        if self.current_question == 0:
+            return True
+        return False
+    
+    def isLast(self):
+        if self.current_question == len(self.questions)-1:
+            return True
+        return False
+    
     def nextQuestion(self):
         self.current_question += 1
         if (self.current_question > len(self.questions) -1):
@@ -21,6 +31,9 @@ class QuizDetails():
     def setQuestionNum(self, question_num):
         if (question_num >= 0 and question_num < len(self.questions)):
             self.current_question = question_num
+    
+    def getQuestionNum(self):
+        return self.current_question
     
     def getQuestion(self):
         return self.questions[self.current_question]
@@ -62,4 +75,5 @@ class QuizDetails():
                 self.questions.append(quizquestion.QuizQuestion(question_title, question_details, question_options, question_image, question_answer)) 
                 
                 #print (str(this_question))
+        #print (str(len(self.questions)) + " questions loaded")
         return True

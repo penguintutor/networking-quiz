@@ -3,6 +3,7 @@
 from guizero.build.lib.guizero import App, Text, PushButton, info, MenuBar, Picture
 
 import quizdetails
+import time
 
 class QuizApp():
     
@@ -11,6 +12,24 @@ class QuizApp():
         self.app = app
         self.quiz = quizdetails.QuizDetails() 
 
+    def home(self):
+        pass
+    
+    def upd_buttons(self):
+        # Wait to give time for button to be released first
+        time.sleep(1)
+        if self.quiz.isFirst():
+            self.left_button.text="Return"
+            self.left_button.change_command(self.home)
+        else:
+            self.left_button.text="<< Previous"
+            self.left_button.change_command(self.prev_question)
+        if self.quiz.isLast():
+            self.right_button.text="End Quiz"
+            self.right_button.change_command(self.end_quiz)
+        else:
+            self.right_button.text="Next >>"
+            self.right_button.change_command(self.next_question)
     
     # Load quiz from disk
     def load_quiz(self):
@@ -20,13 +39,16 @@ class QuizApp():
     
     # Start the quiz
     def start_quiz(self):
+        print ("Start Quiz")
         self.load_quiz()
         self.text_title.value = self.quiz.getTitle()
         #self.text_question_title.value = self.quiz.getQuestion().getTitle()
         self.upd_question()
+        self.upd_buttons()
         
     # Update display of question
     def upd_question(self):
+        print ("On question "+str(self.quiz.getQuestionNum()))
         this_question = self.quiz.getQuestion()
         self.text_question_title.value = this_question.getTitle()
         
@@ -47,15 +69,31 @@ class QuizApp():
     
     # Move to prev question
     def prev_question(self):
-        pass
+        self.quiz.prevQuestion()
+        self.upd_question()
+        self.upd_buttons()
     
     
     # Move to next question
     def next_question(self):
+        print ("Next Question")
+        self.quiz.nextQuestion()
+        self.upd_question()
+        self.upd_buttons()
+        
+    # dummy command (see explanation later regarding guizero bug)
+    def button_pressed(self):
+        #print ("Button pressed")
         pass
+        
+    # End quiz
+    def end_quiz(self):
+        ##Todo implement this
+        print ("Quiz ended")
     
     # Open a new quiz
     def file_open(self):
+        ##Todo load different quiz
         pass
     
     # exit the self.app
@@ -106,7 +144,12 @@ class QuizApp():
         self.image_question = Picture(self.app, image="images/network1.gif", grid=[3,3,3,9])
         
         
-        self.left_button = PushButton(self.app, text="<< Previous", command=self.prev_question, grid=[1,13])
-        self.left_button.hide()
-        self.right_button = PushButton(self.app, text="Start quiz", command=self.start_quiz, grid=[5,13])
+        # Due to a bug in guizero (issue 103) the original button command is
+        # set to a dummy method and change_command used to set the command instead
+        self.left_button = PushButton(self.app, text="Return", command=self.button_pressed, grid=[1,13])
+        self.left_button.change_command(self.prev_question)
+        #self.left_button.hide()
+        #self.right_button = PushButton(self.app, text="Start quiz", command=self.start_quiz, grid=[5,13])
+        self.right_button = PushButton(self.app, self.button_pressed, text="Start quiz", grid=[5,13])
+        self.right_button.change_command(self.start_quiz)
         self.app.display()
