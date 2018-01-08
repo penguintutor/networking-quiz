@@ -4,8 +4,8 @@ from guizero.build.lib.guizero import App, Text, PushButton, info, MenuBar, Pict
 
 import quizdetails
 # For testing the gui without the arduino comment out the quizarduino entry and replace with quizarduinodev 
-#import quizarduino
-import quizarduinodev as quizarduino
+import quizarduino
+#import quizarduinodev as quizarduino
 import time
 
 class QuizApp():
