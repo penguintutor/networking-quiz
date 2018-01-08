@@ -4,8 +4,8 @@ from guizero.build.lib.guizero import App, Text, PushButton, info, MenuBar, Pict
 
 import quizdetails
 # For testing the gui without the arduino comment out the quizarduino entry and replace with quizarduinodev 
-import quizarduino
-#import quizarduinodev as quizarduino
+#import quizarduino
+import quizarduinodev as quizarduino
 import time
 
 class QuizApp():
@@ -99,9 +99,6 @@ class QuizApp():
         self.upd_question()
         self.upd_buttons()
         
-    # dummy command (see explanation later regarding guizero bug)
-    def button_pressed(self):
-        pass
         
     # End quiz
     def end_quiz(self):
@@ -214,12 +211,7 @@ class QuizApp():
         self.image_question = Picture(self.app, image="images/network1.gif", grid=[3,3,3,9])
         
         
-        # Due to a bug in guizero (issue 103) the original button command is
-        # set to a dummy method and change_command used to set the command instead
-        self.left_button = PushButton(self.app, text="Return", command=self.button_pressed, grid=[1,13])
-        self.left_button.change_command(self.prev_question)
-        #self.left_button.hide()
-        #self.right_button = PushButton(self.app, text="Start quiz", command=self.start_quiz, grid=[5,13])
-        self.right_button = PushButton(self.app, self.button_pressed, text="Start quiz", grid=[5,13])
-        self.right_button.change_command(self.start_quiz)
+
+        self.left_button = PushButton(self.app, text="Return", command=self.prev_question, grid=[1,13])
+        self.right_button = PushButton(self.app, text="Start quiz", command=self.start_quiz, grid=[5,13])
         self.app.display()
