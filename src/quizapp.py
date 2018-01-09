@@ -57,16 +57,13 @@ class QuizApp():
     
     # Start the quiz
     def start_quiz(self):
-        #print ("Start Quiz")
         self.load_quiz()
         self.text_title.value = self.quiz.getTitle()
-        #self.text_question_title.value = self.quiz.getQuestion().getTitle()
         self.upd_question()
         self.upd_buttons()
         
     # Update display of question
     def upd_question(self):
-        #print ("On question "+str(self.quiz.getQuestionNum()))
         this_question = self.quiz.getQuestion()
         self.text_question_title.value = this_question.getTitle()
         
@@ -107,12 +104,6 @@ class QuizApp():
         given_answers = self.arduino.send_recv(status_leds)
         score = 0
         # compare given_answers with correct answers
-        # correct_answers = self.quiz.getAnswers()
-        # for i in range (0,6):
-            # response = "incorrect"
-            # if (given_answers[i] == correct_answers[i]) :
-                # response = "correct"
-            # print ("Question " + str(i+1) + " received "+str(given_answers[i]) + " should be "+str(correct_answers[i]) + " answer is "+response)
         details = []
         for i in range (0,6):
             # get the question
@@ -138,17 +129,21 @@ class QuizApp():
         # Set eval based on score
         if (score < 2) :
             eval_string = "Your network is NOT working"
+            eval_image = "poor.gif"
         elif (score > 4) :
             eval_string = "High speed network"
+            eval_image = "good.gif"
         else:
             eval_string = "Network performance acceptable"
+            eval_image = "average.gif"
         
-        ##Todo update image
-        
+        # Show score and updated image
         self.text_question_option_1.value = ""
         self.text_question_option_2.value = "Score "+str(score)+" out of 6"
         self.text_question_option_3.value = ""
         self.text_question_option_4.value = eval_string
+        
+        self.image_question.value = "images/"+eval_image
         
         # Update LEDs with status
         self.arduino.send_recv(status_leds)

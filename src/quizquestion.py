@@ -32,6 +32,6 @@ class QuizQuestion():
         
     # returns as ascii char 0  = a, 1 = b etc.
     def getAnswerLetter(self):
-        return chr(96 + self.answer)
+        return chr(97 + self.answer)
         
         
