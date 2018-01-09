@@ -1,0 +1,19 @@
+{"Networking Quiz" : [
+    {"home": {
+        "title" : "Start Quiz",
+        "details1" : "Enter the quiz by cabling up the patch-panel",
+        "details2" : "the question number is shown at the top",
+        "details3" : "the answer corresponds to a port on the",
+        "details4" : "second row",
+        "details5" : "",
+        "details6" : "",
+        "option1" : "Press start when ready",
+        "option2" : "",
+        "option3" : "",
+        "option4" : "",
+        "image" : "quiz.gif",
+        "left_button": "Return",
+        "right_button" : "Start Quiz"
+        }
+    }
+]}

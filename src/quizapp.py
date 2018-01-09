@@ -6,7 +6,9 @@ import quizdetails
 # For testing the gui without the arduino comment out the quizarduino entry and replace with quizarduinodev 
 import quizarduino
 #import quizarduinodev as quizarduino
+import quizstrings
 import time
+
 
 class QuizApp():
     
@@ -18,6 +20,12 @@ class QuizApp():
     
     def __init__ (self, app):
         self.app = app
+        
+        # Load Strings for pages
+        self.strings = quizstrings.QuizStrings()
+        self.strings.load()
+        
+        # Questions are held in QuizDetails
         self.quiz = quizdetails.QuizDetails() 
         # Setup serial connection to arduino
         self.arduino = quizarduino.QuizArduino(self.serial_port)
@@ -25,10 +33,42 @@ class QuizApp():
         # send blue to indicate startup
         self.arduino.send_recv ([3,3,3,3,3,3])
         
+        
+    # Updates screen to a different page
+    # Updates button labels, but not their functions
+    def upd_page(self, page_name):
+        
+        page_strings = self.strings.getPage(page_name)
+        
+        self.text_question_title.value = page_strings["title"]
+
+        self.text_question_details_1.value = page_strings["details"][0]
+        self.text_question_details_2.value = page_strings["details"][1]
+        self.text_question_details_3.value = page_strings["details"][2]
+        self.text_question_details_4.value = page_strings["details"][3]
+        self.text_question_details_5.value = page_strings["details"][4]
+        self.text_question_details_6.value = page_strings["details"][5]
+        
+        self.text_question_option_1.value = page_strings["options"][0]
+        self.text_question_option_2.value = page_strings["options"][1]
+        self.text_question_option_3.value = page_strings["options"][2]
+        self.text_question_option_4.value = page_strings["options"][3]
+        
+        self.image_question.value = "images/"+page_strings["image"]
+        
+        self.left_button.text = page_strings["left_button"]
+        self.right_button.text = page_strings["right_button"]
+        
 
     # Set home page with appropriate values
     def home(self):
-        pass
+        self.upd_page("home")
+        # update buttons
+        # left button does nothing (returns here)
+        self.left_button.change_command(self.home)
+        self.right_button.change_command(self.start_quiz)
+        # Reset quiz position to 0
+        
     
     # Updates buttons on gui to reflect first and last buttons
     # Also highlights appropriate port for question
@@ -59,6 +99,7 @@ class QuizApp():
     # Start the quiz
     def start_quiz(self):
         self.load_quiz()
+        #self.quiz.setQuestionNum(0) # Reset question number included in load method above
         self.text_title.value = self.quiz.getTitle()
         self.upd_question()
         self.upd_buttons()
@@ -223,7 +264,7 @@ class QuizApp():
         self.text_question_option_3 = Text(self.app, text="", align="left", size=18, grid=[1,11,2,1])
         self.text_question_option_4 = Text(self.app, text="", align="left", size=18, grid=[1,12,2,1])
         
-        self.image_question = Picture(self.app, image="images/network1.gif", grid=[3,3,3,9])
+        self.image_question = Picture(self.app, image="images/quiz.gif", grid=[3,3,3,9])
         
         
 

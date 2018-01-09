@@ -6,8 +6,7 @@ class QuizDetails():
     title = ""
     questions = []
     current_question = 0
-    
-    
+        
     def isFirst(self):
         if self.current_question == 0:
             return True
@@ -21,7 +20,7 @@ class QuizDetails():
     def nextQuestion(self):
         self.current_question += 1
         if (self.current_question > len(self.questions) -1):
-            self.current_question = self.questions -1
+            self.current_question = len(self.questions) -1
     
     def prevQuestion(self):
         self.current_question -= 1
@@ -58,18 +57,29 @@ class QuizDetails():
     def load(self, filename):
         ##todo - if existing quiz replace
         ##todo - need to catch errors
+        
+        
+        # Reset current quiz - remove all entries and reset counter to 0
+        self.questions = []
+        self.current_question = 0
+        
         with open("quizzes/"+filename) as json_file:
             json_data = json.load(json_file)
             # Get title of the quiz from the root key
             root_keys = list(json_data.keys())
             self.title = root_keys[0]
-            
+
+            ## Todo update to use a title field instead of the json tag
+            # to be consistant with quizstrings
+
             question_num = 0
             for this_question in json_data[self.title]:
                 
                 question_title = list(this_question.keys())[0]
                 question_details = [
-                    this_question[question_title]["details1"], this_question[question_title]["details2"], this_question[question_title]["details3"],
+                    this_question[question_title]["details1"], 
+                    this_question[question_title]["details2"], 
+                    this_question[question_title]["details3"],
                     this_question[question_title]["details4"],
                     this_question[question_title]["details5"],
                     this_question[question_title]["details6"]
@@ -86,6 +96,4 @@ class QuizDetails():
                 
                 self.questions.append(quizquestion.QuizQuestion(question_title, question_details, question_options, question_image, question_answer)) 
                 
-                #print (str(this_question))
-        #print (str(len(self.questions)) + " questions loaded")
         return True
