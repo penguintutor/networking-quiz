@@ -9,12 +9,14 @@ import quizarduino
 import quizstrings
 import time
 
+from tkinter import filedialog
+
 
 class QuizApp():
     
     ## These values are hardcoded here in this version
     
-    quiz_filename = "quiz1.json"
+    quiz_filename = "quizzes/quiz1.json"
     serial_port = '/dev/ttyACM0'
     
     
@@ -34,11 +36,23 @@ class QuizApp():
         self.arduino.send_recv ([3,3,3,3,3,3])
         
         
+    def open_quiz_file(self):
+        filename =  filedialog.askopenfilename(initialdir = "quizzes/",title = "Select file",filetypes = (("Quiz files","*.json"),("all files","*.*")))
+        # If valid filename then update
+        if (filename):
+            self.quiz_filename = filename
+            self.load_quiz()
+            self.home()
+        
+        
     # Updates screen to a different page
     # Updates button labels, but not their functions
     def upd_page(self, page_name):
         
+        
         page_strings = self.strings.getPage(page_name)
+        
+        self.text_title.value = self.strings.getTitle()
         
         self.text_question_title.value = page_strings["title"]
 
@@ -99,10 +113,10 @@ class QuizApp():
     # Start the quiz
     def start_quiz(self):
         self.load_quiz()
-        #self.quiz.setQuestionNum(0) # Reset question number included in load method above
         self.text_title.value = self.quiz.getTitle()
         self.upd_question()
         self.upd_buttons()
+        
         
     # Update display of question
     def upd_question(self):
@@ -216,6 +230,7 @@ class QuizApp():
     # Open a new quiz
     def file_open(self):
         ##Todo load different quiz
+        self.open_quiz_file()
         pass
     
     # exit the self.app
@@ -251,7 +266,7 @@ class QuizApp():
         padding0_2 = Picture(self.app, image="layout/0_2.gif", grid=[0,2])       # 100 pixel
         padding0_12 = Picture(self.app, image="layout/0_13.gif", grid=[0,13])    # 100 pixel
         
-        self.text_title = Text(self.app, text="Quiz", size=30, grid=[2,1,2,1])
+        self.text_title = Text(self.app, text="", size=30, grid=[2,1,2,1])
         image_logo = Picture(self.app, image="images/logo.gif", grid=[4,1,2,1])
         
         self.text_question_title = Text(self.app, text="", align="left", size=25, grid=[1,2,2,1])
@@ -278,3 +293,6 @@ class QuizApp():
         self.home()
         
         self.app.display()
+
+
+        

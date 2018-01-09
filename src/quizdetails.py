@@ -63,7 +63,7 @@ class QuizDetails():
         self.questions = []
         self.current_question = 0
         
-        with open("quizzes/"+filename) as json_file:
+        with open(filename) as json_file:
             json_data = json.load(json_file)
             # Get title of the quiz from the root key
             root_keys = list(json_data.keys())

@@ -17,6 +17,9 @@ class QuizStrings():
     # Returns as a hash dictionary - useful for a full page update
     def getPage(self, page_name):
         return self.pages[page_name]
+        
+    def getTitle(self):
+        return self.title
     
     
     def load(self):
