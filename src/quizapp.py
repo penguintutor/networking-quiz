@@ -1,6 +1,6 @@
 # This uses the dev branch of guizero which needs to be linked to the appropriate
 # directory - in future this will use the normal production version of guizero 
-from guizero.build.lib.guizero import App, Text, PushButton, info, MenuBar, Picture
+from guizero.build.lib.guizero import App, Text, PushButton, info, MenuBar, Picture, yesno
 
 import quizdetails
 # For testing the gui without the arduino comment out the quizarduino entry and replace with quizarduinodev 
@@ -26,6 +26,7 @@ class QuizApp():
         self.arduino.send_recv ([3,3,3,3,3,3])
         
 
+    # Set home page with appropriate values
     def home(self):
         pass
     
@@ -96,9 +97,22 @@ class QuizApp():
         self.upd_question()
         self.upd_buttons()
         
+    # Allows to restart and retry same quiz
+    def review(self):
+        # Reset to question 1 and restart
+        self.quiz.setQuestionNum(0)
+        self.upd_question()
+        self.upd_buttons()
+        
         
     # End quiz
     def end_quiz(self):
+        # Check with user they really want to end
+        mark_quiz = yesno("Exam completed", "Have you answered all the questions?")
+        if (mark_quiz == False):
+            return
+        
+        
         # Set all leds blue to indicate marking and get status
         status_leds = [3,3,3,3,3,3]
         given_answers = self.arduino.send_recv(status_leds)
@@ -148,7 +162,13 @@ class QuizApp():
         # Update LEDs with status
         self.arduino.send_recv(status_leds)
         
-        ##Todo change buttons to say "return to quiz and restart quiz" 
+        # Set back button "Review" - goes back to first question to allow retry
+        self.left_button.text="Review"
+        self.left_button.change_command(self.review)
+        
+        # Set right button to home to restart process
+        self.right_button.text="Home"
+        self.right_button.change_command(self.home)
         
         
     
