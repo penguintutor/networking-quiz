@@ -12,6 +12,8 @@ import quizapp
 # arduino.
 # If these need to be changed then they are in quizapp.py
 
+# Note that in the quiz file then the answer is indexed from 1 (not 0)
+
 
 def main():
     app = App(title="Networking Quiz", width=1000, height=755, layout="grid")

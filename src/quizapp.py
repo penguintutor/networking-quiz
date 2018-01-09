@@ -116,10 +116,12 @@ class QuizApp():
         self.text_title.value = self.quiz.getTitle()
         self.upd_question()
         self.upd_buttons()
+        #print ("Start Quiz - Q "+str(self.quiz.getQuestionNum()))
         
         
     # Update display of question
     def upd_question(self):
+        #print ("Show question - Q "+str(self.quiz.getQuestionNum()))
         this_question = self.quiz.getQuestion()
         self.text_question_title.value = this_question.getTitle()
         
@@ -148,9 +150,11 @@ class QuizApp():
     
     # Move to next question
     def next_question(self):
+        #print ("Nex Q - was "+str(self.quiz.getQuestionNum()))
         self.quiz.nextQuestion()
         self.upd_question()
         self.upd_buttons()
+        #print ("Nex Q - now "+str(self.quiz.getQuestionNum()))
         
     # Allows to restart and retry same quiz
     def review(self):
@@ -178,6 +182,7 @@ class QuizApp():
             # get the question
             this_question = self.quiz.getQuestion(i)
             # compare whether answer correct 
+            #print ("Question "+str(i)+" given answer "+str(given_answers[i])+" correct answer "+str(this_question.getAnswer()))
             if (given_answers[i] == this_question.getAnswer()):
                 # correct answer
                 score += 1

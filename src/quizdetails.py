@@ -95,5 +95,5 @@ class QuizDetails():
                 
                 
                 self.questions.append(quizquestion.QuizQuestion(question_title, question_details, question_options, question_image, question_answer)) 
-                
+        #print ("Quiz loaded "+str(len(self.questions))+" questions")
         return True

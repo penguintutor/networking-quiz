@@ -11,7 +11,7 @@
             "option3" : "c. Wi-Fi",
             "option4" : "d. SMTP",
             "image" : "network.gif",
-            "answer" : 2
+            "answer" : 3
             }
         },
         {"Question 2" : {
@@ -26,7 +26,7 @@
             "option3" : "c. CAT-6",
             "option4" : "d. HDMI",
             "image" : "dns.gif",
-            "answer" : 0
+            "answer" : 1
             }
         },
         {"Question 3" : {
@@ -41,7 +41,7 @@
             "option3" : "c. DOT",
             "option4" : "d. HTML",
             "image" : "html.gif",
-            "answer" : 3
+            "answer" : 4
             }
         },
         {"Question 4" : {
@@ -56,7 +56,7 @@
             "option3" : "c. Shortage of IP addresses",
             "option4" : "d. Because of the extra wireless range",
             "image" : "ipaddress.gif",
-            "answer" : 2
+            "answer" : 3
             }
         },
         {"Question 5" : {
@@ -71,7 +71,7 @@
             "option3" : "c. Limit of Available Network",
             "option4" : "d. Nothing - it is made up",
             "image" : "network.gif",
-            "answer" : 1
+            "answer" : 2
             }
         },
         {"Question 6" : {
@@ -86,7 +86,7 @@
             "option3" : "c. IPV6 address",
             "option4" : "d. HTTP address",
             "image" : "ipaddress.gif",
-            "answer" : 1
+            "answer" : 2
             }
         }
 ]}
