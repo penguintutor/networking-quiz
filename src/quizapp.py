@@ -235,6 +235,10 @@ class QuizApp():
                         [ ["About", self.help_about] ]
                         ])
         
+        # Text / buttons are created without any details and are then updated 
+        # based on the quizstrings.json file
+        # This is done prior app.display() so the user will not see flicker etc.
+        
         # column 0 and row 0 are used for dummy images for spacing
         # cols 1 to 5 used for actual display
         # dimensions shown to the right are minimum (using image)
@@ -250,16 +254,16 @@ class QuizApp():
         self.text_title = Text(self.app, text="Quiz", size=30, grid=[2,1,2,1])
         image_logo = Picture(self.app, image="images/logo.gif", grid=[4,1,2,1])
         
-        self.text_question_title = Text(self.app, text="Start Quiz", align="left", size=25, grid=[1,2,2,1])
+        self.text_question_title = Text(self.app, text="", align="left", size=25, grid=[1,2,2,1])
         
-        self.text_question_details_1 = Text(self.app, text="Enter the quiz by cabling up the patch-panel", align="left", size=18, grid=[1,3,3,1])
-        self.text_question_details_2 = Text(self.app, text="the question number is shown at the top", align="left", size=18, grid=[1,4,2,1])
-        self.text_question_details_3 = Text(self.app, text="the answer corresponds to a port on the", align="left", size=18, grid=[1,5,2,1])
-        self.text_question_details_4 = Text(self.app, text="second row", align="left", size=18, grid=[1,6,2,1])
+        self.text_question_details_1 = Text(self.app, text="", align="left", size=18, grid=[1,3,3,1])
+        self.text_question_details_2 = Text(self.app, text="", align="left", size=18, grid=[1,4,2,1])
+        self.text_question_details_3 = Text(self.app, text="", align="left", size=18, grid=[1,5,2,1])
+        self.text_question_details_4 = Text(self.app, text="", align="left", size=18, grid=[1,6,2,1])
         self.text_question_details_5 = Text(self.app, text="", align="left", size=18, grid=[1,7,2,1])
         self.text_question_details_6 = Text(self.app, text="", align="left", size=18, grid=[1,8,2,1])
         
-        self.text_question_option_1 = Text(self.app, text="Press start when ready", align="left", size=18, grid=[1,9,2,1])
+        self.text_question_option_1 = Text(self.app, text="", align="left", size=18, grid=[1,9,2,1])
         self.text_question_option_2 = Text(self.app, text="", align="left", size=18, grid=[1,10,2,1])
         self.text_question_option_3 = Text(self.app, text="", align="left", size=18, grid=[1,11,2,1])
         self.text_question_option_4 = Text(self.app, text="", align="left", size=18, grid=[1,12,2,1])
@@ -268,6 +272,9 @@ class QuizApp():
         
         
 
-        self.left_button = PushButton(self.app, text="Return", command=self.prev_question, grid=[1,13])
-        self.right_button = PushButton(self.app, text="Start quiz", command=self.start_quiz, grid=[5,13])
+        self.left_button = PushButton(self.app, text="", command=self.prev_question, grid=[1,13])
+        self.right_button = PushButton(self.app, text="", command=self.start_quiz, grid=[5,13])
+        
+        self.home()
+        
         self.app.display()
