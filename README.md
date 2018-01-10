@@ -1,4 +1,4 @@
-# neworking-quiz
+# Networking-quiz
 
 This is a multi-choice quiz with a difference. All the answers are cabled up using patch leads between two CAT-5 patch panels.
 
