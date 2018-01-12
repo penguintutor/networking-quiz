@@ -16,7 +16,7 @@
         },
         {"Question 2" : {
             "details1" : "What service is used to convert a user friendly",
-            "details2" : "computer name to an IP address?",
+            "details2" : "computer domain name to an IP address?",
             "details3" : "",
             "details4" : "",
             "details5" : "",
@@ -82,8 +82,8 @@
             "details5" : "",
             "details6" : "",
             "option1" : "a. MAC address",
-            "option2" : "b. IPV4 address",
-            "option3" : "c. IPV6 address",
+            "option2" : "b. IP address",
+            "option3" : "c. Postal address",
             "option4" : "d. HTTP address",
             "image" : "ipaddress.gif",
             "answer" : 2
