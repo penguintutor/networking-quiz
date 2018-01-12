@@ -60,6 +60,12 @@ The code will accept any number of questions (within memory constraints).
 
 The corresponding images must be stored within the src\images directory. There are a few generic images provided already, but you may add more if required. You may want to change the logo.gif and quiz.gif images which relate to a logo and the main quiz image respectively.
 
+## More information
+
+For more information see the following links
+* [School Computer Fair Networking Quiz](http://www.penguintutor.com/news/stem/network-challenge)
+* [Updated Network Quiz Challenge with GUI](http://www.penguintutor.com/news/stem/networking-quiz2)
+
 
 ## Future development
 
